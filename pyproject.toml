@@ -1,0 +1,19 @@
+[project]
+name = "sql-debugger-env"
+version = "0.1.0"
+description = "SQL Debugger & Optimizer OpenEnv environment"
+authors = [{ name = "Abrar" }]
+
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "pydantic",
+  "openenv"
+]
+requires-python = ">=3.10,<3.12"
+[project.scripts]
+server = "server.app:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

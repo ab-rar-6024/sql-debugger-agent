@@ -1,0 +1,59 @@
+name: sql-debugger-agent
+version: "1.0.0"
+description: >
+  A real-world environment where an AI agent debugs broken SQL queries —
+  fixing syntax errors, logic bugs (wrong JOINs, aggregation mistakes,
+  subquery scope), performance anti-patterns (N+1 correlated subqueries),
+  and SQL injection vulnerabilities. Uses a live in-memory SQLite database
+  for 100% deterministic, execution-based grading.
+
+author: NeuroHack
+tags:
+  - openenv
+  - sql
+  - debugging
+  - optimization
+  - security
+  - real-world
+  - data-engineering
+
+tasks:
+  - name: easy
+    description: Fix SQL syntax errors — typos in keywords, missing clauses.
+    difficulty: easy
+    max_steps: 3
+    reward_range: [0.0, 1.0]
+
+  - name: medium
+    description: Fix logic bugs — wrong JOIN types, incorrect aggregation scope, bad ORDER BY.
+    difficulty: medium
+    max_steps: 3
+    reward_range: [0.0, 1.0]
+
+  - name: hard
+    description: >
+      Fix + optimize + secure: N+1 correlated subqueries, SQL injection vulnerabilities,
+      and missing column aliases. All bugs must be identified and fixed.
+    difficulty: hard
+    max_steps: 3
+    reward_range: [0.0, 1.0]
+
+interface:
+  observation: Observation
+  action: Action
+  reward: Reward
+  methods:
+    - reset
+    - step
+    - state
+
+environment:
+  python: ">=3.10"
+  framework: openenv-core
+  database: sqlite3 (in-memory, no external deps)
+  api: openai-compatible
+
+hf_space:
+  sdk: docker
+  tags:
+    - openenv
