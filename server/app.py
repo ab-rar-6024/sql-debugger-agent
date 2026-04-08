@@ -631,6 +631,12 @@ async def root():
     return HTMLResponse(content=HTML_CONTENT)
 
 
+@app.post("/reset")
+async def reset():
+    """Reset endpoint called by the frontend to clear session state."""
+    return {"status": "reset", "message": "Session reset successfully"}
+
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}
